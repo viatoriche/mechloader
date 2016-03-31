@@ -9,5 +9,6 @@ data = loader.download('/path/to/resource')
 ```
 
 Features:
+
     0. simple authorization
     1. cookies managing 
