@@ -152,6 +152,8 @@ class Mechloader(object):
 
     def download(self, path):
         self.logger.info('Downloading path - {}'.format(path))
-        return self.get(path).read()
+        data = self.get(path).read()
+        self.logger.info('Download path - {} complete'.format(path))
+        return data
 
 
