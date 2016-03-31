@@ -51,6 +51,7 @@ class Mechloader(object):
         self.options = options
         if self.logger is None:
             self.logger = logging.getLogger(__name__)
+        self.logger.info(u'Mechloader was initialized with main url: {}'.format(main_url))
 
     @property
     def browser(self):
@@ -124,6 +125,7 @@ class Mechloader(object):
         self.update_auth_form()
         self.submit()
         self.check_auth()
+        self.logger.info(u'Authorization on site success')
 
     def check_auth(self):
         try:
@@ -149,6 +151,7 @@ class Mechloader(object):
         self.set_cookie(self.session_cookie_name, value)
 
     def download(self, path):
+        self.logger.info('Downloading path - {}'.format(path))
         return self.get(path).read()
 
 
