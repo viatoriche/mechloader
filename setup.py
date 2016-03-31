@@ -4,7 +4,7 @@ from setuptools import find_packages
 
 package = 'mechloader'
 
-version = __import__(package).get_version()
+version = "0.0.1"
 packages = find_packages()
 
 def get_package_data(package):
@@ -31,7 +31,7 @@ setup(
     author='viatoriche',
     author_email='maxim@via-net.org',
     description='Downloader for web based on mechanize',
-    url='https://github.com/viatoriche/microservices',
-    download_url='https://github.com/viatoriche/microservices/tarball/{}'.format(version),
+    url='https://github.com/viatoriche/mechloader',
+    download_url='https://github.com/viatoriche/mechloader/tarball/{}'.format(version),
     install_requires=['mechanize'],
 )

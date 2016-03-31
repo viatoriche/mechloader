@@ -3,9 +3,6 @@ from mechloader.dict_update import dict_update
 import logging
 import mechanize
 
-def get_version():
-    return '0.0.1'
-
 class AuthError(RuntimeError):
     pass
 
