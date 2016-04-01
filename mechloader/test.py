@@ -22,7 +22,7 @@ class FakeBrowser(object):
     def __init__(self, prop=None):
         import addict
         self.prop = prop
-        self.cookies = {}
+        self.cookies = addict.Dict()
         self.forms = ['login']
         self._valid_form = {
             'login': 'user',
@@ -142,4 +142,6 @@ class TestWebDownloader(unittest.TestCase):
         self.assertEqual(d.download('download'), 'tested')
         d.set_cookie('1', '2')
         self.assertEqual(d.get_cookie('1'), '2')
+
+        d.download('download', stream=True, cookies={})
 

@@ -1,7 +1,8 @@
-from urlparse import urlsplit, urlparse
+from urlparse import urlsplit, urlparse, urljoin
 from mechloader.dict_update import dict_update
 import logging
 import mechanize
+import requests
 
 class AuthError(RuntimeError):
     pass
@@ -150,10 +151,21 @@ class Mechloader(object):
     def set_session(self, value):
         self.set_cookie(self.session_cookie_name, value)
 
-    def download(self, path):
+    def download(self, path, stream=False, headers=None, cookies=None, chunk_size=1024):
         self.logger.info('Downloading path - {}'.format(path))
-        data = self.get(path).read()
-        self.logger.info('Download path - {} complete'.format(path))
-        return data
+        if not stream:
+            response = self.get(path)
+            self.logger.info('Download path - {} complete'.format(path))
+            return response.read()
+        else:
+            if cookies is None:
+                cookies = self.browser._ua_handlers['_cookies'].cookiejar
+            response = requests.get(
+                urljoin(self.main_url, path),
+                stream=True,
+                cookies=cookies,
+                headers=headers,
+            )
+            return response.iter_content(chunk_size=chunk_size)
 
 

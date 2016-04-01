@@ -4,7 +4,7 @@ from setuptools import find_packages
 
 package = 'mechloader'
 
-version = "0.0.4"
+version = "0.1.0"
 packages = find_packages()
 
 def get_package_data(package):
@@ -33,5 +33,5 @@ setup(
     description='Downloader for web based on mechanize',
     url='https://github.com/viatoriche/mechloader',
     download_url='https://github.com/viatoriche/mechloader/tarball/{}'.format(version),
-    install_requires=['mechanize'],
+    install_requires=['mechanize', 'requests'],
 )
